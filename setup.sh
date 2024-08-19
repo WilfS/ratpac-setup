@@ -34,7 +34,8 @@ function install(){
     # Versioning
     root_branch="v6-28-00-patches"
     geant_branch="v11.1.2"
-    ratpac_repository="https://github.com/rat-pac/ratpac-two.git"
+    ratpac_repository="https://github.com/WilfS/ratpac-two.git"
+    ratpac_version="v1.0.1"
 
     for element in "$@"
     do
@@ -602,6 +603,7 @@ function install_ratpac()
     rm -rf ratpac
     git clone "${options[ratpac_repository]}" ratpac
     cd ratpac || exit 1
+    git checkout "${ratpac_version}"
     if [ "${options[enable_arm64]}" = true ]
     then
         sed -i '' 's/x86_64/arm64/g' CMakeLists.txt
